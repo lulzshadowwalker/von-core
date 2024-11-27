@@ -18,8 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Wallet {
   String get id => throw _privateConstructorUsedError;
   String get balance => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get avatar => throw _privateConstructorUsedError;
+  List<Transaction>? get transactions => throw _privateConstructorUsedError;
 
   /// Create a copy of Wallet
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +31,7 @@ abstract class $WalletCopyWith<$Res> {
   factory $WalletCopyWith(Wallet value, $Res Function(Wallet) then) =
       _$WalletCopyWithImpl<$Res, Wallet>;
   @useResult
-  $Res call({String id, String balance, String email, String avatar});
+  $Res call({String id, String balance, List<Transaction>? transactions});
 }
 
 /// @nodoc
@@ -52,8 +51,7 @@ class _$WalletCopyWithImpl<$Res, $Val extends Wallet>
   $Res call({
     Object? id = null,
     Object? balance = null,
-    Object? email = null,
-    Object? avatar = null,
+    Object? transactions = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -64,14 +62,10 @@ class _$WalletCopyWithImpl<$Res, $Val extends Wallet>
           ? _value.balance
           : balance // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
+      transactions: freezed == transactions
+          ? _value.transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<Transaction>?,
     ) as $Val);
   }
 }
@@ -83,7 +77,7 @@ abstract class _$$WalletImplCopyWith<$Res> implements $WalletCopyWith<$Res> {
       __$$WalletImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String balance, String email, String avatar});
+  $Res call({String id, String balance, List<Transaction>? transactions});
 }
 
 /// @nodoc
@@ -101,8 +95,7 @@ class __$$WalletImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? balance = null,
-    Object? email = null,
-    Object? avatar = null,
+    Object? transactions = freezed,
   }) {
     return _then(_$WalletImpl(
       id: null == id
@@ -113,14 +106,10 @@ class __$$WalletImplCopyWithImpl<$Res>
           ? _value.balance
           : balance // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
+      transactions: freezed == transactions
+          ? _value._transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<Transaction>?,
     ));
   }
 }
@@ -131,21 +120,26 @@ class _$WalletImpl implements _Wallet {
   const _$WalletImpl(
       {required this.id,
       required this.balance,
-      required this.email,
-      required this.avatar});
+      final List<Transaction>? transactions})
+      : _transactions = transactions;
 
   @override
   final String id;
   @override
   final String balance;
+  final List<Transaction>? _transactions;
   @override
-  final String email;
-  @override
-  final String avatar;
+  List<Transaction>? get transactions {
+    final value = _transactions;
+    if (value == null) return null;
+    if (_transactions is EqualUnmodifiableListView) return _transactions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'Wallet(id: $id, balance: $balance, email: $email, avatar: $avatar)';
+    return 'Wallet(id: $id, balance: $balance, transactions: $transactions)';
   }
 
   @override
@@ -155,12 +149,13 @@ class _$WalletImpl implements _Wallet {
             other is _$WalletImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.balance, balance) || other.balance == balance) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.avatar, avatar) || other.avatar == avatar));
+            const DeepCollectionEquality()
+                .equals(other._transactions, _transactions));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, balance, email, avatar);
+  int get hashCode => Object.hash(runtimeType, id, balance,
+      const DeepCollectionEquality().hash(_transactions));
 
   /// Create a copy of Wallet
   /// with the given fields replaced by the non-null parameter values.
@@ -175,17 +170,14 @@ abstract class _Wallet implements Wallet {
   const factory _Wallet(
       {required final String id,
       required final String balance,
-      required final String email,
-      required final String avatar}) = _$WalletImpl;
+      final List<Transaction>? transactions}) = _$WalletImpl;
 
   @override
   String get id;
   @override
   String get balance;
   @override
-  String get email;
-  @override
-  String get avatar;
+  List<Transaction>? get transactions;
 
   /// Create a copy of Wallet
   /// with the given fields replaced by the non-null parameter values.

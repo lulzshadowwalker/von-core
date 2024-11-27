@@ -10,6 +10,16 @@ class Logger extends VonLogger {
   );
 
   @override
+  void t(
+    dynamic message, {
+    DateTime? time,
+    Object? error,
+    StackTrace? stackTrace,
+  }) {
+    _log.t(message, time: time, error: error, stackTrace: stackTrace);
+  }
+
+  @override
   void d(
     dynamic message, {
     DateTime? time,

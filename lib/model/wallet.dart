@@ -7,8 +7,7 @@ class Wallet with _$Wallet {
   const factory Wallet({
     required String id,
     required String balance,
-    required String email,
-    required String avatar,
+    List<Transaction>? transactions,
   }) = _Wallet;
 }
 

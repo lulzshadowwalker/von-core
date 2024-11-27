@@ -3,6 +3,14 @@ abstract class VonLogger {
 
   final String tag;
 
+  /// Trace
+  void t(
+    dynamic message, {
+    DateTime? time,
+    Object? error,
+    StackTrace? stackTrace,
+  });
+
   /// Info
   void i(
     dynamic message, {
